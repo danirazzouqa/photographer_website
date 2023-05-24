@@ -1,8 +1,6 @@
 <?php
 session_start();
 require_once 'db_config.php';
-
-
 ?>
 
 <!DOCTYPE html>
@@ -10,16 +8,26 @@ require_once 'db_config.php';
 <head>
     <title>Photographer Website</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
     <header>
-        <nav>
+        <nav style="background-color: crimson;">
             <ul class="header-menu">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="profile.php">Profile</a></li>
-                <li><a href="login.php" class="register-login">Register/Login</a></li>
+                <li>
+                    <div class="login-register">
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a href="logout.php">Logout</a>
+                        <?php else: ?>
+                            <a href="login.php">Login</a>
+                            <a href="register.php">Register</a>
+                        <?php endif; ?>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>

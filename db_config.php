@@ -1,14 +1,14 @@
 <?php
-$servername = "localhost";
-$username = "root"; // default username for XAMPP is "root"
-$password = ""; // default password for XAMPP is empty
-$database = "photographer_website";
+$host = 'localhost';
+$db_name = 'photographer_website';
+$username = 'root';
+$password = "";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db_name;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die('Connection failed: ' . $e->getMessage());
 }
 ?>
