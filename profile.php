@@ -20,18 +20,6 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 <head>
     <title>Profile Page</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <style>
-        .profile {
-            text-align: center;
-        }
-
-        .profile img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -62,6 +50,11 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <?php else: ?>
                 <img src="default-profile-photo.jpg" alt="Default Profile Photo">
             <?php endif; ?>
+
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="profile_photo" accept=".jpg, .png, .jpeg">
+                <input type="submit" value="Upload">
+            </form>
         </div>
     </div>
 </body>

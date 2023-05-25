@@ -2,18 +2,42 @@
 session_start();
 require_once 'db_config.php';
 
+$error = []; // array to hold validation errors
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-    // Insert the code for validating and inserting the user's data into the database
-    // ...
+    // Validate username, email and password
+    if (empty($username)) {
+        $error['username'] = "Username is required";
+    }
+    if (empty($email)) {
+        $error['email'] = "Email is required";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error['email'] = "Invalid email format";
+    }
+    if (empty($password)) {
+        $error['password'] = "Password is required";
+    }
 
-    // Assuming you have already defined the $conn variable for the database connection
-    // Execute the necessary database operations using $conn
-    // ...
+    // If validation passes
+    if (empty($error)) {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // SQL statement to insert new user
+        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$username, $email, $hashedPassword]);
+            header('Location: login.php'); // redirect to login page after successful registration
+        } catch (PDOException $e) {
+            $error['database'] = "Error: Could not execute $sql. " . $e->getMessage();
+        }
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -46,9 +70,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container">
         <h1>Register</h1>
-        <!-- Add your registration form here -->
         <form method="POST" action="">
-            <!-- Your form fields and submit button -->
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <?php if (isset($error['username'])): ?>
+                    <p><?php echo $error['username']; ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <?php if (isset($error['email'])): ?>
+                    <p><?php echo $error['email']; ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <?php if (isset($error['password'])): ?>
+                    <p><?php echo $error['password']; ?></p>
+                <?php endif; ?>
+            </div>
+
+            <?php if (isset($error['database'])): ?>
+                <p><?php echo $error['database']; ?></p>
+            <?php endif; ?>
+
+            <button type="submit">Register</button>
         </form>
     </div>
 </body>

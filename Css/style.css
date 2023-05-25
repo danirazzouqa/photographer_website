@@ -16,7 +16,7 @@ p {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color:lightskyblue;
     border-radius: 5px;
 }
 
@@ -52,8 +52,24 @@ nav li {
 a {
     text-decoration: none;
     color: #000;
+    font-size: large;
 }
 
 .register-login {
     font-weight: bold;
+}
+
+.profile img {
+    width: 150px;
+    height: 150px;
+}
+
+.photos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.photo {
+    text-align: center;
 }

@@ -2,6 +2,7 @@
 session_start();
 require_once 'db_config.php';
 
+// Check if user is not logged in, redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
@@ -9,22 +10,14 @@ if (!isset($_SESSION['user_id'])) {
 
 // Fetch user information
 $user_id = $_SESSION['user_id'];
-$query = "SELECT * FROM users WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
-$stmt->close();
+$stmt = $pdo->prepare('SELECT * FROM users WHERE id = :user_id');
+$stmt->execute(['user_id' => $user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Fetch user's photos
-$query = "SELECT * FROM photos WHERE user_id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$photos = $result->fetch_all(MYSQLI_ASSOC);
-$stmt->close();
+$stmt = $pdo->prepare('SELECT * FROM photos WHERE user_id = :user_id');
+$stmt->execute(['user_id' => $user_id]);
+$photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -35,15 +28,22 @@ $stmt->close();
 </head>
 <body>
     <h1>Welcome, <?php echo $user['username']; ?>!</h1>
-    <p><a href="index.php">Home</a></p>
-    <h2>Your Photos:</h2>
-    <?php foreach ($photos as $photo) { ?>
-        <div class="photo">
-            <h3><?php echo $photo['title']; ?></h3>
-            <p><?php echo $photo['description']; ?></p>
-            <p>Created at: <?php echo $photo['created_at']; ?></p>
-        </div>
-    <?php } ?>
+
+    <form method="POST" action="upload_photo.php" enctype="multipart/form-data">
+        <input type="file" name="photo" accept=".jpg, .jpeg, .png">
+        <input type="submit" value="Upload Photo">
+    </form>
+
+    <div class="photos-grid">
+        <?php foreach ($photos as $photo): ?>
+            <div class="photo">
+                <img src="<?php echo $photo['path']; ?>" alt="<?php echo $photo['title']; ?>">
+                <p><?php echo $photo['title']; ?></p>
+                <a href="delete_photo.php?id=<?php echo $photo['id']; ?>">Delete</a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
     <p><a href="profile.php">Edit Profile</a></p>
     <p><a href="logout.php">Logout</a></p>
 </body>
