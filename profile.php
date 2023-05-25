@@ -13,6 +13,39 @@ $user_id = $_SESSION['user_id'];
 $stmt = $pdo->prepare('SELECT * FROM users WHERE id = :user_id');
 $stmt->execute(['user_id' => $user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Check if profile update form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+
+    $stmt = $pdo->prepare('UPDATE users SET username = :username, email = :email WHERE id = :user_id');
+    $stmt->execute(['username' => $username, 'email' => $email, 'user_id' => $user_id]);
+
+    // Redirect to same page to reflect changes
+    header('Location: profile.php');
+    exit();
+}
+
+// Check if password change form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    if ($password == $confirm_password) {
+        // Password hashing for security
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $pdo->prepare('UPDATE users SET password = :password WHERE id = :user_id');
+        $stmt->execute(['password' => $hashed_password, 'user_id' => $user_id]);
+
+        // Redirect to same page to reflect changes
+        header('Location: profile.php');
+        exit();
+    } else {
+        $password_error = "Passwords do not match";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,11 +83,31 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <?php else: ?>
                 <img src="default-profile-photo.jpg" alt="Default Profile Photo">
             <?php endif; ?>
-
             <form method="POST" enctype="multipart/form-data">
                 <input type="file" name="profile_photo" accept=".jpg, .png, .jpeg">
                 <input type="submit" value="Upload">
             </form>
+        </div>
+
+        <div class="edit-profile">
+            <h2>Edit Profile</h2>
+            <form method="POST">
+                <label>Username: <input type="text" name="username" value="<?php echo $user['username']; ?>" required></label><br>
+                <label>Email: <input type="email" name="email" value="<?php echo $user['email']; ?>" required></label><br>
+                <input type="submit" name="update_profile" value="Update">
+            </form>
+        </div>
+
+        <div class="change-password">
+            <h2>Change Password</h2>
+            <form method="POST">
+                <label>Password: <input type="password" name="password" required></label><br>
+                <label>Confirm Password: <input type="password" name="confirm_password" required></label><br>
+                <input type="submit" name="change_password" value="Change Password">
+            </form>
+            <?php if (isset($password_error)): ?>
+                <p><?php echo $password_error; ?></p>
+            <?php endif; ?>
         </div>
     </div>
 </body>

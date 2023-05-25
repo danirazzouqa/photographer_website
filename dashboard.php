@@ -14,10 +14,27 @@ $stmt = $pdo->prepare('SELECT * FROM users WHERE id = :user_id');
 $stmt->execute(['user_id' => $user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Fetch user's photos
-$stmt = $pdo->prepare('SELECT * FROM photos WHERE user_id = :user_id');
-$stmt->execute(['user_id' => $user_id]);
+// Determine the current page
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
+
+// Define the number of records per page
+$photos_per_page = 8;
+
+// Prepare SQL to fetch photos with limit and offset
+$stmt = $pdo->prepare('SELECT * FROM photos WHERE user_id = :user_id LIMIT :offset, :limit');
+$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->bindValue(':offset', ($page - 1) * $photos_per_page, PDO::PARAM_INT);
+$stmt->bindValue(':limit', $photos_per_page, PDO::PARAM_INT);
+$stmt->execute();
+
+// Fetch the photos for the current page
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Calculate the total number of pages
+$stmt = $pdo->prepare('SELECT COUNT(*) FROM photos WHERE user_id = :user_id');
+$stmt->execute(['user_id' => $user_id]);
+$total_photos = $stmt->fetchColumn();
+$total_pages = ceil($total_photos / $photos_per_page);
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +59,25 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <a href="delete_photo.php?id=<?php echo $photo['id']; ?>">Delete</a>
             </div>
         <?php endforeach; ?>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <?php if ($page > 1): ?>
+            <a href="?page=<?php echo $page - 1; ?>">Previous</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            <?php if ($i == $page): ?>
+                <strong><?php echo $i; ?></strong>
+            <?php else: ?>
+                <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <?php endif; ?>
+        <?php endfor; ?>
+
+        <?php if ($page < $total_pages): ?>
+            <a href="?page=<?php echo $page + 1; ?>">Next</a>
+        <?php endif; ?>
     </div>
 
     <p><a href="profile.php">Edit Profile</a></p>

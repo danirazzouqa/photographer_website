@@ -70,6 +70,33 @@ a {
     grid-gap: 20px;
 }
 
+
+.photo img {
+    width: 400px;
+    height: 600px;
+    object-fit: cover;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
 .photo {
+    flex: 1;
+    margin: 10px;
     text-align: center;
+}
+
+.pagination {
+    text-align: center;
+    
+}
+
+.pagination a {
+    margin: 0 10px;
+    color: blue;
+}
+.pagination a:hover {
+    color: deepskyblue;
 }
