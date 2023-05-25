@@ -1,26 +1,41 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0px;
+    background-color: #000;
+    
 }
 
 .container {
-    padding: 20px;
-    background-color: lightskyblue;
-    border-radius: 5px;
-    width: 100%;
+    
+        background-color: #1b1b1b;
+        float: center;
+        max-width: 1200;
+        width: 1088px;
+        padding-top: 20px;
+        text-align: center;
+        margin: auto;
+       
+   
 }
+@media screen and (max-width: 768px) {
+    .container {
+      width: 100%;
+      padding: 10px;
+    }
+  }
 
-header {
-    padding: 10px;
-    background-color: crimson;
-}
+
+
+
 
 nav ul {
     display: flex; /* Use flexbox for horizontal layout */
-    justify-content: flex-end; /* Align items to the right */
-    margin: 0;
+    justify-content: end; /* Align items to the right */
+    margin: auto;
     padding: 0;
+    background-color:#1b1b1b;
+    width: 1088px;
 }
 
 nav li {
@@ -30,25 +45,60 @@ nav li {
 
 a {
     text-decoration: none;
-    color: #000;
+    color: gray;
     font-size: large;
+    
+}
+
+h1,h2,p {
+    color: white;
+}
+
+
+.Features li  {
+    display: inline-block; /* This allows the items to sit side by side and also respect text-align:center from parent */
+    width: 100%; /* This will make each item take up the full width, thus appearing on a new line */
+    text-align: center; /* This will make the text within the list item align to the left */
+    
 }
 
 .photos-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px; 
+    background-color: #1b1b1b;
+    width: 1088px;
+    margin: auto;
 }
 
 .photo-item {
-    flex-basis: calc(25% - 2em); /* Adjust for margins */
+    flex: 1 0 21%; /* grow | shrink | basis */
     box-sizing: border-box;
     margin: 1em;
+    text-align: center;
 }
 
+@media (max-width: 1088px) {
+    .photo-item {
+        flex: 1 0 46%;
+    }
+}
+
+@media (max-width: 500px) {
+    .photo-item {
+        flex: 1 0 100%;
+    }
+}
+.form-dash {
+    color: white;
+    background-color: #1b1b1b;
+    width: 800;
+    text-align: left;
+}
 .photo-item img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 400px; /* specify any fixed height you want */
+    object-fit: cover;
 }
 
 .pagination {
@@ -57,9 +107,51 @@ a {
 
 .pagination a {
     margin: 0 10px;
-    color: blue;
+    color: white;
 }
 
 .pagination a:hover {
     color: deepskyblue;
+}
+
+.c {
+    background-color: white;
+    color: gray;
+}
+.profile img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* to keep aspect ratio */
+    padding-left: 20px;
+    
+}
+
+.profile {
+    display: flex;
+    flex-direction: column; /* to stack elements vertically */
+    align-items: left ; /* center elements horizontally */
+}
+.profile form  {
+    text-align: justify;
+    padding-left: 20px;
+    color: white;
+}
+
+.edit-profile, .change-password {
+    text-align: justify;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    
+    
+}
+.profile-container{
+padding: 20px; 
+background-color: lightskyblue;
+border-radius: 5px;
+width: 100%;
+
+}
+.Edit {
+    text-align: center;
 }

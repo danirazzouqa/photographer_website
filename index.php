@@ -14,11 +14,14 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Photographer Website</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    
+
 </head>
 <body>
+
     <header>
-        <nav style="background-color: crimson;">
-            <ul class="header-menu">
+        <nav>
+            <ul >
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
@@ -44,12 +47,12 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h2>About</h2>
         <p>This website is dedicated to photographers who want to showcase their work and connect with their audience.</p>
 
-        <h2>Features</h2>
-        <ul>
+        <h2 >Features</h2>
+        <ul class="Features">
             <li>Register an account to create a profile and manage your photos.</li>
             <li>Login to access your dashboard and view your uploaded photos.</li>
             <li>Edit your profile information to personalize your online presence.</li>
-            <li>Add, update, or delete your photos to showcase your portfolio.</li>
+            <li>Add, update, or delete your photos to showcase your portfolio.  </li>
         </ul>
 
         <h2>Contact</h2>

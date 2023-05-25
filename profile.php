@@ -56,20 +56,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 </head>
 <body>
     <header>
-        <nav style="background-color: crimson;">
-            <div class="container">
-                <div class="navbar">
-                    <ul>
+        <nav >
+            <div >
+                <div >
+                    <ul class="header-menu">
                         <li><a href="index.php">Home</a></li>
                         <li><a href="about.php">About</a></li>
                         <li><a href="dashboard.php">Dashboard</a></li>
-                    </ul>
-                </div>
-                <div class="navbar-right">
-                    <ul>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </div>
+             
             </div>
         </nav>
     </header>
@@ -101,8 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
         <div class="change-password">
             <h2>Change Password</h2>
             <form method="POST">
-                <label>Password: <input type="password" name="password" required></label><br>
-                <label>Confirm Password: <input type="password" name="confirm_password" required></label><br>
+                <input class="c" type="text" name="password" required value="password"><br>
+                <input class="c" type="text" name="confirm_password" value="confirm password" required><br>
                 <input type="submit" name="change_password" value="Change Password">
             </form>
             <?php if (isset($password_error)): ?>

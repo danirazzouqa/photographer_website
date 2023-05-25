@@ -44,16 +44,37 @@ $total_pages = ceil($total_photos / $photos_per_page);
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+<header>
+        <nav>
+            <ul >
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li>
+                    <div class="login-register">
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a href="logout.php">Logout</a>
+                        <?php else: ?>
+                            <a href="login.php">Login</a>
+                            <a href="register.php">Register</a>
+                        <?php endif; ?>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
     <h1>Welcome, <?php echo $user['username']; ?>!</h1>
 
-    <form method="POST" action="upload_photo.php" enctype="multipart/form-data">
+    <form class="form-dash" method="POST" action="upload_photo.php" enctype="multipart/form-data">
         <input type="file" name="photo" accept=".jpg, .jpeg, .png">
         <input type="submit" value="Upload Photo">
     </form>
 
     <div class="photos-grid">
         <?php foreach ($photos as $photo): ?>
-            <div class="photo">
+            <div class="photo-item">
                 <img src="<?php echo $photo['path']; ?>" alt="<?php echo $photo['title']; ?>">
                 <p><?php echo $photo['title']; ?></p>
                 <a href="delete_photo.php?id=<?php echo $photo['id']; ?>">Delete</a>
@@ -79,8 +100,9 @@ $total_pages = ceil($total_photos / $photos_per_page);
             <a href="?page=<?php echo $page + 1; ?>">Next</a>
         <?php endif; ?>
     </div>
-
+    <div class="Edit">         
     <p><a href="profile.php">Edit Profile</a></p>
     <p><a href="logout.php">Logout</a></p>
+    </div>
 </body>
 </html>
