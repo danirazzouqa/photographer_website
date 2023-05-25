@@ -4,37 +4,16 @@ body {
     padding: 20px;
 }
 
-h1 {
-    text-align: center;
-}
-
-p {
-    text-align: center;
-}
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
-    background-color:lightskyblue;
+    background-color: lightskyblue;
     border-radius: 5px;
-}
-
-h2 {
-    margin-top: 30px;
-}
-
-ul {
-    list-style-type: disc;
-    margin-left: 20px;
+    width: 100%;
 }
 
 header {
     padding: 10px;
     background-color: crimson;
-    margin-left: -20px; /* Remove the default margin */
-    margin-right: -20px; /* Remove the default margin */
-    margin-top: -20px; /* Remove the default margin */
 }
 
 nav ul {
@@ -55,48 +34,32 @@ a {
     font-size: large;
 }
 
-.register-login {
-    font-weight: bold;
-}
-
-.profile img {
-    width: 150px;
-    height: 150px;
-}
-
 .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-}
-
-
-.photo img {
-    width: 400px;
-    height: 600px;
-    object-fit: cover;
-}
-
-.row {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
-.photo {
-    flex: 1;
-    margin: 10px;
-    text-align: center;
+.photo-item {
+    flex-basis: calc(25% - 2em); /* Adjust for margins */
+    box-sizing: border-box;
+    margin: 1em;
+}
+
+.photo-item img {
+    max-width: 100%;
+    height: auto;
 }
 
 .pagination {
     text-align: center;
-    
 }
 
 .pagination a {
     margin: 0 10px;
     color: blue;
 }
+
 .pagination a:hover {
     color: deepskyblue;
 }

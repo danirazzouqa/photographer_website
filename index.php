@@ -1,6 +1,11 @@
 <?php
 session_start();
 require_once 'db_config.php';
+
+// Fetch random photos from different users
+$stmt = $pdo->prepare('SELECT * FROM photos ORDER BY RAND() LIMIT 8');
+$stmt->execute();
+$photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +54,18 @@ require_once 'db_config.php';
 
         <h2>Contact</h2>
         <p>For any inquiries or support, please email us at contact@photographerwebsite.com.</p>
-    </div>
+
+        <h2>Random Photos from Different Users</h2>
+        <div class="photos-grid">
+    <?php foreach ($photos as $photo): ?>
+        <div class="photo-item">
+            <img src="<?php echo $photo['path']; ?>" alt="<?php echo $photo['title']; ?>">
+            <p><?php echo $photo['title']; ?></p>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+        </div>
+    
 </body>
 </html>
