@@ -36,12 +36,18 @@ nav ul {
     padding: 0;
     background-color:#1b1b1b;
     width: 1088px;
-    
+   
 }
 
 nav li {
     display: inline;
     margin-right: 10px;
+    border-right: 1px solid yellow;
+    padding: 10px;
+    height: 10px;
+}
+nav li:last-child {
+    border-right: none;
 }
 
 a {
@@ -53,7 +59,7 @@ a {
 
 h1,h2,p {
     color: white;
-    width: 1088;
+   
     margin: auto;
     padding-bottom: 20px ;
     background-color: #1b1b1b;
@@ -182,12 +188,15 @@ width: 100%;
 ul.Features {
     list-style-type: none;
     padding: 0;
+    max-width: 75%;
+    margin: auto;
 }
 
 ul.Features li {
+    
     color: black;
     background: yellow;
-    margin: 10px 0;
+    margin: 10px ;
     padding: 10px 0px 10px 0px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
@@ -195,4 +204,64 @@ ul.Features li {
 
 ul.Features li:hover {
     background: #e0e0e0;
+}
+
+.social-links a {
+    margin: 0 15px;
+    color: #666;
+    font-size: 24px;
+}
+
+.social-links a:hover {
+    color: yellow;
+}
+
+h2.contact {
+    background-color: yellow;
+    color: #333;
+    text-align: justify;
+    width: 75%;
+    padding: 10px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.contact-form textarea {
+height: 150px;
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #666;
+}
+
+.social-links a {
+    margin: 0 15px;
+    color: #666;
+    font-size: 24px;
+}
+
+.social-links a:hover {
+    color: #333;
+}
+
+.about-website, .about-features, .contact-info {
+    padding: 20px;
 }

@@ -42,6 +42,7 @@ $total_pages = ceil($total_photos / $photos_per_page);
 <head>
     <title>Dashboard - Photographer Website</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <header>
@@ -51,6 +52,12 @@ $total_pages = ceil($total_photos / $photos_per_page);
                 <li><a href="about.php">About</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="profile.php">Profile</a></li>
+                <li><a href="Contact Us.php">Contact Us</a></li>
+                <div class="social-links">
+        <a href="https://www.facebook.com/YourUsername" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/YourUsername" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/YourUsername" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
                 <li>
                     <div class="login-register">
                         <?php if (isset($_SESSION['user_id'])): ?>

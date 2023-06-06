@@ -53,23 +53,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 <head>
     <title>Profile Page</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header>
-        <nav >
-            <div >
-                <div >
-                    <ul class="header-menu">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="dashboard.php">Dashboard</a></li>
-                        <li><a href="logout.php">Logout</a></li>
-                    </ul>
-                </div>
-             
-            </div>
+    <nav>
+            <ul >
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="Contact Us.php">Contact Us</a></li>
+                <div class="social-links">
+        <a href="https://www.facebook.com/YourUsername" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/YourUsername" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/YourUsername" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+                
+                <li>
+                    <div class="login-register">
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a href="logout.php">Logout</a>
+                        <?php else: ?>
+                            <a href="login.php">Login</a>
+                            <a href="register.php">Register</a>
+                        <?php endif; ?>
+                    </div>
+                </li>
+            </ul>
         </nav>
-    </header>
 
     <div class="container">
         <h1>Welcome, <?php echo $user['username']; ?>!</h1>
