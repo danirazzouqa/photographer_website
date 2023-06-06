@@ -1,3 +1,20 @@
+<?php
+session_start();
+require_once 'db_config.php';
+
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+}
+
+// Fetch user information
+$user_id = $_SESSION['user_id'];
+$stmt = $pdo->prepare('SELECT * FROM users WHERE id = :user_id');
+$stmt->execute(['user_id' => $user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-<div class="container">
+
    
     <header>
         <nav>
@@ -30,13 +47,13 @@
                             <a href="login.php">Login</a>
                             <a href="register.php">Register</a>
                         <?php endif; ?>
-                    </div>
+                    
                 </li>
             </ul>
         </nav>
     </header>
     
-
+    <div class="container">
     <main>
         <section class="about-website">
             <h2>Our Mission</h2>
@@ -52,13 +69,14 @@
 
         <section class="contact-info">
             <h2>Contact Us</h2>
-            <p>For any inquiries or support, please email us at <a href="mailto:contact@photographerwebsite.com">contact@photographerwebsite.com</a> or through the <a href="contact.html">contact form</a>.</p>
+            <p>For any inquiries or support, please email us at <a href="mailto:contact@photographerwebsite.com">contact@photographerwebsite.com</a> or through the <a href="Contact Us.php">contact form</a>.</p>
         </section>
     </main>
 
     <footer>
         <p>© 2023 Our Photography Website. All rights reserved.</p>
     </footer>
+    </div>
     </div>
 </body>
 </html>

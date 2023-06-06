@@ -23,16 +23,16 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header>
         <nav>
             <ul >
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="profile.php">Profile</a></li>
-                <li><a href="Contact Us.php">Contact Us</a></li>
-                <div class="social-links">
-        <a href="https://www.facebook.com/YourUsername" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/in/YourUsername" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://github.com/YourUsername" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="profile.php">Profile</a></li>
+                    <li><a href="Contact Us.php">Contact Us</a></li>
+                 <div class="social-links">
+                    <a href="https://www.facebook.com/YourUsername" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/YourUsername" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/YourUsername" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
                 
                 <li>
                     <div class="login-register">
@@ -52,8 +52,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h1>Welcome to the Photographer Website!</h1>
         <p><a href="login.php">Login</a> or <a href="register.php">Register</a> to access the dashboard.</p>
 
-        <h2>About</h2>
-        <p>This website is dedicated to photographers who want to showcase their work and connect with their audience.</p>
+        
 
         <h2 >Features</h2>
         <ul class="Features">
@@ -73,18 +72,12 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     
 </div>
-<div class="contact">
-    <h2>Contact</h2>
-        <p>For any inquiries or support, please email us at contact@photographerwebsite.com.</p>
+    <footer>
+        <p class="foot">© 2023 Our Photography Website. All rights reserved.</p>
+    </footer>
+</div>
 
-        <div class="social-links">
-            <a href="https://www.facebook.com/YourUsername" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.linkedin.com/in/YourUsername" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/YourUsername" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
-    </div>
-
-        </div>
+ </div>
     
 </body>
 </html>

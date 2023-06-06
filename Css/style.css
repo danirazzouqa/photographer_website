@@ -48,6 +48,7 @@ nav li {
 }
 nav li:last-child {
     border-right: none;
+    border-left: 1px solid yellow;
 }
 
 a {
@@ -264,4 +265,11 @@ height: 150px;
 
 .about-website, .about-features, .contact-info {
     padding: 20px;
+}
+
+
+.foot{
+    border-top: 1px solid yellow;
+    padding: 10px;
+    width: 75%;
 }

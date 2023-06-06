@@ -1,3 +1,19 @@
+<?php
+session_start();
+require_once 'db_config.php';
+
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+}
+
+// Fetch user information
+$user_id = $_SESSION['user_id'];
+$stmt = $pdo->prepare('SELECT * FROM users WHERE id = :user_id');
+$stmt->execute(['user_id' => $user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +30,11 @@
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="Contact Us.php">Contact Us</a></li>
-                
+                <div class="social-links">
+        <a href="https://www.facebook.com/YourUsername" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/YourUsername" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/YourUsername" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
                 <li>
                     <div class="login-register">
                         <?php if (isset($_SESSION['user_id'])): ?>
