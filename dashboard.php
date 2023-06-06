@@ -64,14 +64,15 @@ $total_pages = ceil($total_photos / $photos_per_page);
             </ul>
         </nav>
     </header>
-    
+    <div class="container">
     <h1>Welcome, <?php echo $user['username']; ?>!</h1>
+    
 
     <form class="form-dash" method="POST" action="upload_photo.php" enctype="multipart/form-data">
         <input type="file" name="photo" accept=".jpg, .jpeg, .png">
         <input type="submit" value="Upload Photo">
     </form>
-
+    </div>
     <div class="photos-grid">
         <?php foreach ($photos as $photo): ?>
             <div class="photo-item">
@@ -99,10 +100,11 @@ $total_pages = ceil($total_photos / $photos_per_page);
         <?php if ($page < $total_pages): ?>
             <a href="?page=<?php echo $page + 1; ?>">Next</a>
         <?php endif; ?>
-    </div>
-    <div class="Edit">         
+        <div class="Edit">         
     <p><a href="profile.php">Edit Profile</a></p>
     <p><a href="logout.php">Logout</a></p>
     </div>
+    </div>
+    
 </body>
 </html>

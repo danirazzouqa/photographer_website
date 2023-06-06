@@ -36,6 +36,7 @@ nav ul {
     padding: 0;
     background-color:#1b1b1b;
     width: 1088px;
+    
 }
 
 nav li {
@@ -52,6 +53,10 @@ a {
 
 h1,h2,p {
     color: white;
+    width: 1088;
+    margin: auto;
+    padding-bottom: 20px ;
+    background-color: #1b1b1b;
 }
 
 
@@ -59,6 +64,7 @@ h1,h2,p {
     display: inline-block; /* This allows the items to sit side by side and also respect text-align:center from parent */
     width: 100%; /* This will make each item take up the full width, thus appearing on a new line */
     text-align: center; /* This will make the text within the list item align to the left */
+    color: white;
     
 }
 
@@ -92,8 +98,10 @@ h1,h2,p {
 .form-dash {
     color: white;
     background-color: #1b1b1b;
-    width: 800;
-    text-align: left;
+    width: 1088;
+    margin: auto;
+    text-align: center;
+   
 }
 .photo-item img {
     width: 100%;
@@ -103,11 +111,22 @@ h1,h2,p {
 
 .pagination {
     text-align: center;
+    background-color: #1b1b1b;
+    max-width: 1200px;
+    width: 1088px;
+    margin: auto;
+    color:green;
+    padding-bottom: 10px;
+    border-bottom: 1px solid yellow;
+
+
 }
 
 .pagination a {
     margin: 0 10px;
     color: white;
+    border-bottom: 1px solid white;
+   
 }
 
 .pagination a:hover {
@@ -154,4 +173,26 @@ width: 100%;
 }
 .Edit {
     text-align: center;
+    width: 1088px;
+    margin: auto;
+    
+    
+}
+
+ul.Features {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.Features li {
+    color: black;
+    background: yellow;
+    margin: 10px 0;
+    padding: 10px 0px 10px 0px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+ul.Features li:hover {
+    background: #e0e0e0;
 }
