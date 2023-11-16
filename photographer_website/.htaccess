@@ -1,0 +1,12 @@
+DirectoryIndex index.php index.html
+
+<IfModule mod_autoindex.c>
+    Options Indexes FollowSymLinks
+    AddDefaultCharset UTF-8
+    ReadmeName README.html
+    HeaderName HEADER.html
+</IfModule>
+
+<Files ".ht*">
+    Require all denied
+</Files>
